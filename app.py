@@ -3,12 +3,13 @@ from flask_sqlalchemy import SQLAlchemy
 from flask_login import LoginManager, UserMixin, login_user, login_required, logout_user, current_user
 from werkzeug.security import generate_password_hash, check_password_hash
 import requests
+import os
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'your_secret_key'
 
-# Updated the database URI to connect to your RDS MySQL instance
-app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://admin:qwertyuiop@my-flask-db.ct8686g6i2km.us-west-2.rds.amazonaws.com/my-flask-db'
+# Updated to use the environment variable for the database URI
+app.config['SQLALCHEMY_DATABASE_URI'] = os.getenv('SQLALCHEMY_DATABASE_URI', 'mysql+pymysql://admin:qwertyuiop@my-flask-db.ct8686g6i2km.us-west-2.rds.amazonaws.com/my-flask-db')
 
 db = SQLAlchemy(app)
 login_manager = LoginManager(app)
