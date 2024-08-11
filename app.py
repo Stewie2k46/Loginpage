@@ -7,7 +7,7 @@ import requests
 app = Flask(__name__)
 app.config['SECRET_KEY'] = 'your_secret_key'
 
-# Update the database URI to connect to your RDS MySQL instance
+# Updated the database URI to connect to your RDS MySQL instance
 app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql+pymysql://admin:qwertyuiop@my-flask-db.ct8686g6i2km.us-west-2.rds.amazonaws.com/my-flask-db'
 
 db = SQLAlchemy(app)
@@ -18,6 +18,29 @@ class User(UserMixin, db.Model):
     id = db.Column(db.Integer, primary_key=True)
     username = db.Column(db.String(150), unique=True, nullable=False)
     password = db.Column(db.String(150), nullable=False)
+
+class UserDetails(db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'), nullable=False)
+    first_name = db.Column(db.String(150))
+    last_name = db.Column(db.String(150))
+    dob = db.Column(db.String(150))
+    gender = db.Column(db.String(150))
+    age = db.Column(db.Integer)
+    address = db.Column(db.String(300))
+    contact_number = db.Column(db.String(150))
+    email = db.Column(db.String(150))
+    emergency_contact_name = db.Column(db.String(150))
+    emergency_contact_number = db.Column(db.String(150))
+    primary_care_physician = db.Column(db.String(150))
+    insurance_provider = db.Column(db.String(150))
+    insurance_policy_number = db.Column(db.String(150))
+    known_allergies = db.Column(db.String(150))
+    current_medications = db.Column(db.String(150))
+    medical_history = db.Column(db.String(150))
+    reason_for_visit = db.Column(db.String(150))
+    date_of_visit = db.Column(db.String(150))
+    signature = db.Column(db.String(150))
 
 @login_manager.user_loader
 def load_user(user_id):
