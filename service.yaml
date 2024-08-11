@@ -1,14 +1,12 @@
-# service.yaml
 apiVersion: v1
 kind: Service
 metadata:
   name: loginpage-service
 spec:
-  type: NodePort
   selector:
     app: loginpage
   ports:
-  - protocol: TCP
-    port: 5000
-    targetPort: 5000
-    nodePort: 30007 # NodePort must be within the range 30000-32767
+    - protocol: TCP
+      port: 5000
+      targetPort: 5000
+  type: NodePort

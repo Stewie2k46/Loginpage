@@ -1,4 +1,3 @@
-# deployment.yaml
 apiVersion: apps/v1
 kind: Deployment
 metadata:
@@ -18,3 +17,6 @@ spec:
         image: stewiedocker46/loginpage:latest
         ports:
         - containerPort: 5000
+        env:
+        - name: SQLALCHEMY_DATABASE_URI
+          value: "mysql+pymysql://admin:qwertyuiop@my-flask-db.ct8686g6i2km.us-west-2.rds.amazonaws.com/my-flask-db"
