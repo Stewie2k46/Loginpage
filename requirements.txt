@@ -1,6 +1,2 @@
-Flask
-flask_sqlalchemy
-flask_login
-werkzeug
-requests
-pymysql
+Flask==2.0.1
+Werkzeug==2.0.1
