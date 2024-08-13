@@ -14,7 +14,7 @@ spec:
     spec:
       containers:
       - name: loginpage-container
-        image: stewiedocker46/loginpage:latest
+        image: your-dockerhub-username/loginpage:latest
         ports:
         - containerPort: 5000
         env:
